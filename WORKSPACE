@@ -25,8 +25,8 @@ register_toolchains("@io_bazel_rules_scala//scala:unused_dependency_checker_erro
 # load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 # scala_register_toolchains()
 
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-scala_repositories()
+# load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+# scala_repositories()
 
 protobuf_version="09745575a923640154bcf307fba8aedff47f240a"
 protobuf_version_sha256="416212e14481cff8fd4849b1c1c1200a7f34808a54377e22d7447efdf54ad758"
@@ -72,6 +72,42 @@ maven_install(
     "org.scala-lang:scala-compiler:2.11.12",
     "org.scala-lang:scala-library:2.11.12",
     "org.scala-lang:scala-reflect:2.11.12",
+  ],
+  repositories = [
+    "https://jcenter.bintray.com/",
+    "https://maven.google.com",
+    "https://repo1.maven.org/maven2",
+  ],
+)
+
+maven_install(
+  name = "scalac",
+  artifacts = [
+    "commons-io:commons-io:2.6",
+  ],
+  repositories = [
+    "https://jcenter.bintray.com/",
+    "https://maven.google.com",
+    "https://repo1.maven.org/maven2",
+  ],
+)
+
+maven_install(
+  name = "worker",
+  artifacts = [
+    "com.google.protobuf:protobuf-java:3.11.1",
+  ],
+  repositories = [
+    "https://jcenter.bintray.com/",
+    "https://maven.google.com",
+    "https://repo1.maven.org/maven2",
+  ],
+)
+
+maven_install(
+  name = "exe",
+  artifacts = [
+    "com.google.guava:guava:27.1-jre",
   ],
   repositories = [
     "https://jcenter.bintray.com/",

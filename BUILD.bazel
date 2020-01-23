@@ -1,4 +1,6 @@
-load(":defs.bzl", "scala_2_12_transition", "scala_binary", "scala_library", "scala_test")
+load(":defs.bzl", "scala_binary", "scala_library", "scala_test")
+
+# bazel build hello-2.11 hello-2.12 hello && ./bazel-bin/hello-2.11 && ./bazel-bin/hello-2.12 && ./bazel-bin/hello#
 
 scala_library(
     name = "library-2.11",

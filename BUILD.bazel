@@ -2,6 +2,10 @@ load(":defs.bzl", "scala_binary", "scala_library", "scala_test")
 
 # bazel run hello-2.11 && bazel run hello-2.12 && bazel run hello
 
+# Note: in our prod environments, we use starlark macros to generated
+# the versions we want using string interpolation so we don't have
+# code duplication. At some point, I'll add an example of that.
+
 scala_library(
     name = "library-2.11",
     srcs = [
@@ -31,6 +35,10 @@ java_binary(
     main_class = "App",
     runtime_deps = [":library-2.12"],
 )
+
+# These targets use the default toolchain which is selected in
+# `WORKSPACE`, e.g.,
+# `register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-toolchain")`
 
 scala_library(
     name = "library",

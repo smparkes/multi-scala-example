@@ -27,7 +27,6 @@ java_binary(
 scala_library(
   name = "library",
   srcs = ["hello.scala", "hello_default.scala"],
-  toolchain = "@io_bazel_rules_scala//scala:scala-2.12-scala-toolchain",
 )
 
 java_binary(

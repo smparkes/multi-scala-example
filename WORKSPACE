@@ -20,6 +20,7 @@ local_repository(
 )
 
 register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-toolchain")
+# register_toolchains("@io_bazel_rules_scala//scala:scala-2.11-toolchain")
 register_toolchains("@io_bazel_rules_scala//scala:unused_dependency_checker_error_toolchain")
 
 # load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
@@ -69,9 +70,9 @@ maven_install(
 maven_install(
   name = "scala_2_12",
   artifacts = [
-    "org.scala-lang:scala-compiler:2.11.12",
-    "org.scala-lang:scala-library:2.11.12",
-    "org.scala-lang:scala-reflect:2.11.12",
+    "org.scala-lang:scala-compiler:2.12.10",
+    "org.scala-lang:scala-library:2.12.10",
+    "org.scala-lang:scala-reflect:2.12.10",
   ],
   repositories = [
     "https://jcenter.bintray.com/",

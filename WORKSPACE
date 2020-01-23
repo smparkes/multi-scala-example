@@ -10,15 +10,16 @@ http_archive(
     url = "https://github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib.{}.tar.gz".format(skylib_version, skylib_version),
 )
 
-rules_scala_version="4dd81e6d9982d91fd2606938c6573a698ac455e4"
-rules_scala_sha="6dd5b693e883e217bc9e6d307a17645c99c00a3c2f0df377efed3fe792809bb3"
+rules_scala_version = "4dd81e6d9982d91fd2606938c6573a698ac455e4"
+
+rules_scala_sha = "6dd5b693e883e217bc9e6d307a17645c99c00a3c2f0df377efed3fe792809bb3"
 
 http_archive(
     name = "io_bazel_rules_scala",
+    sha256 = rules_scala_sha,
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
-    sha256 = rules_scala_sha,
 )
 
 # local_repository(
@@ -32,6 +33,7 @@ register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-toolchain")
 register_toolchains("@io_bazel_rules_scala//scala:unused_dependency_checker_error_toolchain")
 
 protobuf_version = "09745575a923640154bcf307fba8aedff47f240a"
+
 protobuf_version_sha256 = "416212e14481cff8fd4849b1c1c1200a7f34808a54377e22d7447efdf54ad758"
 
 http_archive(
@@ -42,6 +44,7 @@ http_archive(
 )
 
 RULES_JVM_EXTERNAL_TAG = "3.0"
+
 RULES_JVM_EXTERNAL_SHA = "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a"
 
 http_archive(

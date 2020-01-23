@@ -10,30 +10,28 @@ http_archive(
     url = "https://github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib.{}.tar.gz".format(skylib_version, skylib_version),
 )
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+rules_scala_version="f0821efb360a5662fd7d17951b62afa739833d57"
+rules_scala_sha="8533a9d21febc15f16973c8c0e931f479001adc7a3cdb80877142c846f37d4f3"
 
-label = "2fcb2cb3a6eebe87df5b2027b8c1cc97bdb02151"
-
-strip_prefix = "bazel_scala-" + label
-
-local_repository(
+http_archive(
     name = "io_bazel_rules_scala",
-    path = "rules_scala",
+    strip_prefix = "rules_scala-%s" % rules_scala_version,
+    type = "zip",
+    url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
+    sha256 = rules_scala_sha,
 )
 
-register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-toolchain")
+# local_repository(
+#     name = "io_bazel_rules_scala",
+#     path = "rules_scala",
+# )
 
+register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-toolchain")
 # register_toolchains("@io_bazel_rules_scala//scala:scala-2.11-toolchain")
+
 register_toolchains("@io_bazel_rules_scala//scala:unused_dependency_checker_error_toolchain")
 
-# load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-# scala_register_toolchains()
-
-# load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-# scala_repositories()
-
 protobuf_version = "09745575a923640154bcf307fba8aedff47f240a"
-
 protobuf_version_sha256 = "416212e14481cff8fd4849b1c1c1200a7f34808a54377e22d7447efdf54ad758"
 
 http_archive(
@@ -43,10 +41,7 @@ http_archive(
     url = "https://github.com/protocolbuffers/protobuf/archive/%s.tar.gz" % protobuf_version,
 )
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 RULES_JVM_EXTERNAL_TAG = "3.0"
-
 RULES_JVM_EXTERNAL_SHA = "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a"
 
 http_archive(

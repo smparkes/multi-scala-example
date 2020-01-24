@@ -14,23 +14,25 @@ rules_scala_version = "054f75d4ba01cea6b771827a893da41c925e0022"
 
 rules_scala_sha = "39b33fe6c2bd7e9c7af8e568bf8767371447082a4dc903b4bffd416db63e8914"
 
-http_archive(
-    name = "io_bazel_rules_scala",
-    sha256 = rules_scala_sha,
-    strip_prefix = "rules_scala-%s" % rules_scala_version,
-    type = "zip",
-    url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
-)
-
-# local_repository(
+# http_archive(
 #     name = "io_bazel_rules_scala",
-#     path = "rules_scala",
+#     sha256 = rules_scala_sha,
+#     strip_prefix = "rules_scala-%s" % rules_scala_version,
+#     type = "zip",
+#     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
 # )
 
+local_repository(
+    name = "io_bazel_rules_scala",
+    path = "rules_scala",
+)
+
+register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-bootstrap-toolchain")
 register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-toolchain")
+
 # register_toolchains("@io_bazel_rules_scala//scala:scala-2.11-toolchain")
 
-register_toolchains("@io_bazel_rules_scala//scala:unused_dependency_checker_error_toolchain")
+# register_toolchains("@io_bazel_rules_scala//scala:unused_dependency_checker_error_toolchain")
 
 protobuf_version = "09745575a923640154bcf307fba8aedff47f240a"
 
@@ -62,6 +64,9 @@ maven_install(
         "org.scala-lang:scala-compiler:2.11.12",
         "org.scala-lang:scala-library:2.11.12",
         "org.scala-lang:scala-reflect:2.11.12",
+        "org.scalatest:scalatest_2.11:3.1.0",
+        "org.scala-lang.modules:scala-xml_2.11:1.2.0",
+        "org.scala-lang.modules:scala-parser-combinators_2.11:1.1.2",
     ],
     repositories = [
         "https://jcenter.bintray.com/",
@@ -76,6 +81,9 @@ maven_install(
         "org.scala-lang:scala-compiler:2.12.10",
         "org.scala-lang:scala-library:2.12.10",
         "org.scala-lang:scala-reflect:2.12.10",
+        "org.scalatest:scalatest_2.12:3.1.0",
+        "org.scala-lang.modules:scala-xml_2.12:1.2.0",
+        "org.scala-lang.modules:scala-parser-combinators_2.12:1.1.2",
     ],
     repositories = [
         "https://jcenter.bintray.com/",

@@ -27,6 +27,14 @@ local_repository(
     path = "rules_scala",
 )
 
+load("@io_bazel_rules_scala//scala:versions.bzl", "scala_versions")
+
+scala_versions({
+    "2.11.12": {},
+    "2.12.10": {},
+    "2.13.1": {},
+})
+
 default_version = ["2.12"]
 
 [register_toolchains("@io_bazel_rules_scala//scala:scala-%s-toolchain" % version) for version in default_version]

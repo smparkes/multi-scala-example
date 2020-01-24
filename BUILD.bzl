@@ -4,7 +4,7 @@ def build():
     for version in ["2.11", "2.12", None]:
 
         scala_toolchain = "@io_bazel_rules_scala//scala:scala-%s-scala-toolchain" % version if version else None
-        scalatest_toolchain = "@io_bazel_rules_scala//scala:scala-%s-scalatest-toolchain" % version if version else None
+        scalatest_toolchain = "@io_bazel_rules_scala//scala:scala-%s-scala-scalatest-toolchain" % version if version else None
 
         suffix = "-" + version if version else ""
 

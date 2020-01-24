@@ -27,12 +27,11 @@ local_repository(
     path = "rules_scala",
 )
 
-register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-bootstrap-toolchain")
-register_toolchains("@io_bazel_rules_scala//scala:scala-2.12-toolchain")
+default_version = ["2.12"]
 
-# register_toolchains("@io_bazel_rules_scala//scala:scala-2.11-toolchain")
-
-# register_toolchains("@io_bazel_rules_scala//scala:unused_dependency_checker_error_toolchain")
+[register_toolchains("@io_bazel_rules_scala//scala:scala-%s-toolchain" % version) for version in default_version]
+[register_toolchains("@io_bazel_rules_scala//scala:scala-%s-bootstrap-toolchain" % version) for version in default_version]
+[register_toolchains("@io_bazel_rules_scala//scala:scala-%s-scalatest-toolchain" % version) for version in default_version]
 
 protobuf_version = "09745575a923640154bcf307fba8aedff47f240a"
 
@@ -65,6 +64,7 @@ maven_install(
         "org.scala-lang:scala-library:2.11.12",
         "org.scala-lang:scala-reflect:2.11.12",
         "org.scalatest:scalatest_2.11:3.1.0",
+        "org.scalactic:scalactic_2.11:3.1.0",
         "org.scala-lang.modules:scala-xml_2.11:1.2.0",
         "org.scala-lang.modules:scala-parser-combinators_2.11:1.1.2",
     ],
@@ -82,6 +82,7 @@ maven_install(
         "org.scala-lang:scala-library:2.12.10",
         "org.scala-lang:scala-reflect:2.12.10",
         "org.scalatest:scalatest_2.12:3.1.0",
+        "org.scalactic:scalactic_2.12:3.1.0",
         "org.scala-lang.modules:scala-xml_2.12:1.2.0",
         "org.scala-lang.modules:scala-parser-combinators_2.12:1.1.2",
     ],

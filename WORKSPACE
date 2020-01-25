@@ -41,7 +41,6 @@ scala_configuration({
     "scalatest": "3.1.0",
     "scala-xml": "1.2.0",
     "scala-parser-combinators": "1.1.2",
-    "maven_install_json_prefix": "//:maven_install/scala_",
 })
 
 load(

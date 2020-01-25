@@ -29,9 +29,29 @@ scala_configuration({
     "scala": {
         "2.11.12": {},
         "2.12.10": {},
-        "2.13.1": {},
+        "2.13.1": {
+            "scalacopts": [
+                "-deprecation:true",
+                "-encoding", "UTF-8",
+                "-feature",
+                "-unchecked",
+                "-Xfatal-warnings",
+                "-Xsource:2.13",
+            ],
+        },
     },
     "default": "2.13",
+    "scalacopts": [
+        "-deprecation:true",
+        "-encoding", "UTF-8",
+        "-feature",
+        "-unchecked",
+        "-Xfatal-warnings",
+        "-Xfuture",
+        "-Xsource:2.12",
+        "-Ypartial-unification",
+    ],
+    "unused_dependency_checker_mode": "error",
 })
 
 load(

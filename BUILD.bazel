@@ -1,4 +1,5 @@
-# bazel run hello-2.11 && bazel run hello-2.12 && bazel run hello
+# bazel run :app && bazel run :app-2.11 && bazel run :app-2.12 && bazel run :app-2.13 && bazel test :all
 
 load(":BUILD.bzl", "build")
+
 build()

@@ -28,9 +28,11 @@ local_repository(
 )
 
 load("@io_bazel_rules_scala//scala:rules_jvm_external.bzl", "rules_jvm_external")
+
 rules_jvm_external()
 
 load("@io_bazel_rules_scala//scala:scala_configuration.bzl", "scala_configuration")
+
 scala_configuration({
     "scala": {
         "2.11.12": {},
@@ -38,19 +40,14 @@ scala_configuration({
         "2.13.1": {},
     },
     "default": "2.13",
-    "scalatest": "3.1.0",
-    "scala-xml": "1.2.0",
-    "scala-parser-combinators": "1.1.2",
 })
 
 load(
     "@io_bazel_rules_scala//scala:scala_repositories.bzl",
     "scala_repositories",
 )
-scala_repositories()
 
-# load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_toolchains")
-# scala_toolchains()
+scala_repositories()
 
 protobuf_version = "09745575a923640154bcf307fba8aedff47f240a"
 

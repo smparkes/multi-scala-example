@@ -1,0 +1,3 @@
+[submodule "rules_scala"]
+	path = rules_scala
+	url = https://github.com/smparkes/rules_scala

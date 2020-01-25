@@ -1,1 +1,4 @@
 test --test_output=errors
+build \
+  --strategy=Scalac=worker \
+  --worker_sandboxing

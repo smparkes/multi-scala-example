@@ -1,5 +1,45 @@
-# bazel run :app && bazel run :app-2.11 && bazel run :app-2.12 && bazel run :app-2.13 && bazel test :all
-
 load(":BUILD.bzl", "build")
+load("@io_bazel_rules_scala_configuration//:scala_configuration.bzl", "scala_toolchain", "scalatest_toolchain")
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_binary", "scala_library", "scala_test")
+
+# simple / normal example ... uses default toolchains. Will fail if not default version is configured.
+
+scala_library(
+    name = "library",
+    srcs = ["App.scala"],
+)
+
+java_binary(
+    name = "app",
+    main_class = "App",
+    runtime_deps = [":library"]
+)
+
+scala_test(
+    name = "test",
+    srcs = ["AppTest.scala"],
+)
+
+# static example ... manaully specify toolchains. Will fail if requested toolchain is not configured.
+
+scala_library(
+    name = "library-static",
+    srcs = ["App.scala"],
+    toolchains = [scala_toolchain("2.12")],
+)
+
+java_binary(
+    name = "app-static",
+    main_class = "App",
+    runtime_deps = [":library"]
+)
+
+scala_test(
+    name = "test-static",
+    srcs = ["AppTest.scala"],
+    toolchains = [scala_toolchain("2.12"), scalatest_toolchain("2.12")]
+)
+
+# dynamic examples: generated in BUILD.bzl
 
 build()

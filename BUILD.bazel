@@ -12,7 +12,7 @@ scala_library(
 java_binary(
     name = "app",
     main_class = "App",
-    runtime_deps = [":library"]
+    runtime_deps = [":library"],
 )
 
 scala_test(
@@ -31,13 +31,16 @@ scala_library(
 java_binary(
     name = "app-static",
     main_class = "App",
-    runtime_deps = [":library"]
+    runtime_deps = [":library"],
 )
 
 scala_test(
     name = "test-static",
     srcs = ["AppTest.scala"],
-    toolchains = [scala_toolchain("2.12"), scalatest_toolchain("2.12")]
+    toolchains = [
+        scala_toolchain("2.12"),
+        scalatest_toolchain("2.12"),
+    ],
 )
 
 # dynamic examples: generated in BUILD.bzl

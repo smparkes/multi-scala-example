@@ -1,8 +1,8 @@
 load(
     "@io_bazel_rules_scala_configuration//:scala_configuration.bzl",
     _scala_configuration = "scala_configuration",
-    _scala_version_configuration = "scala_version_configuration",
     _scala_toolchain = "scala_toolchain",
+    _scala_version_configuration = "scala_version_configuration",
     _scalatest_toolchain = "scalatest_toolchain",
 )
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_binary", "scala_library", "scala_test")
